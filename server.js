@@ -25,14 +25,41 @@ const init = async () => {
         {
             plugin: Inert,
         },
+        {
+            plugin: require("@hapi/vision"),
+        },
     ]);
 
+    server.views({
+        engines: {
+            hbs: require("handlebars"),
+        },
+        path: path.join(__dirname, "views"),
+        layout: "default",
+    });
     server.route([
         {
             method: "GET",
             path: "/",
             handler: (request, h) => {
                 return h.file("welcome.html");
+            },
+        },
+        {
+            method: "GET",
+            path: "/dynamic",
+            handler: (request, h) => {
+                const data = {
+                    name: "Beans",
+                };
+                return h.view("index", data);
+            },
+        },
+        {
+            method: "POST",
+            path: "/login",
+            handler: (request, h) => {
+                return h.view("index", { username: request.payload.username });
             },
         },
         {
@@ -47,9 +74,9 @@ const init = async () => {
             path: "/location",
             handler: (request, h) => {
                 if (request.location) {
-                    return request.location;
+                    return h.view("location", {location: request.location.ip});
                 } else {
-                    return "<h1>Your location is not enabled by default</h1>";
+                    return h.view("location", {location: "Your Location is not enabled!"});
                 }
             },
         },
