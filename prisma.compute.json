@@ -1,0 +1,13 @@
+{
+  "region": "eu-central-1",
+  "app": {
+    "name": "4weekfullstack",
+    "framework": "bun",
+    "entry": "4WeekFullStack",
+    "httpPort": 3000,
+    "build": {
+      "command": null,
+      "outputDirectory": "."
+    }
+  }
+}
