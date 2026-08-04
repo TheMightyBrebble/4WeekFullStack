@@ -21,12 +21,16 @@
     "@hapi/hapi": "^21.4.10",
     "@hapi/inert": "^7.1.2",
     "@hapi/vision": "^7.0.3",
-    "dotenv": "^17.4.2",
+    "@prisma/client": "^7.9.1",
     "handlebars": "^4.7.9",
     "hapi-geo-locate": "^4.1.1",
     "hapi-postgres-connection": "^7.0.0",
     "node.js": "^0.0.1-security",
     "pg": "^8.22.0",
     "sequelize": "^6.37.8"
+  },
+  "devDependencies": {
+    "dotenv": "^17.4.2",
+    "prisma": "^7.9.1"
   }
 }
