@@ -21,6 +21,8 @@ const init = async () => {
             options: {
                 enabledByDefault: true,
             },
+        },{
+            plugin: HapiPostgresConnection
         },
         {
             plugin: Inert,
@@ -44,6 +46,21 @@ const init = async () => {
             handler: (request, h) => {
                 return h.file("welcome.html");
             },
+        },{
+            method: "GET",
+            path: "/database",
+            handler: async (request, h) => {
+                let email = "test@test.net";
+                let select = `SELECT * FROM user WHERE ${email}`;
+
+                try {
+                    const result = await request.pg.client.query(insertData);
+                    console.log(result);
+                    return h.response(result.rows[0]);
+                }catch (err){
+                    console.log(err);
+                }
+            }
         },
         {
             method: "GET",
